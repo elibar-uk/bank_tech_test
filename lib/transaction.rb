@@ -6,8 +6,6 @@ class Transaction
   end
 
   def set_item(date, amount)
-    @item[:amount] = amount
-    @item[:date] = date
-    # @item
+    @item = {date: date, amount: amount }
   end
 end

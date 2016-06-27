@@ -1,24 +1,22 @@
-# class Account
-# attr_reader :balance
-#
-#   def initialize(transaction= Transaction.new)
-#     @transaction = transaction
-#     @balance = balance
-#   end
+require_relative 'transaction'
+class Account
+attr_reader :balance, :transaction, :transaction_history
 
-  # def withdrawal
-  #   @balance -= @transaction.set_item[:amount]
-  # end
-  #
-  # def deposit
-  # @balance += @transaction.set_item[:amount]
-  # end
-  #
-  # def return_balance
-  #   @balance
-  # end
+  def initialize(transaction= Transaction.new)
+    @transaction = transaction
+    @balance = 0
+    @transaction_history =[]
+  end
 
+  def withdrawal(date, amount)
+    line1= @transaction.set_item(date, amount)
+    @balance -= @transaction.item[:amount]
+    @transaction_history << line1
+  end
 
-
-
+  def deposit(date, amount)
+    line = @transaction.set_item(date, amount)
+    @balance += @transaction.item[:amount]
+    @transaction_history << line
+  end
 end
