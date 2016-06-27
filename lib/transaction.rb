@@ -6,6 +6,6 @@ class Transaction
   end
 
   def set_item(date, amount)
-    @item = {date: date, amount: amount }
+    @item = {date: date, amount: amount}
   end
 end

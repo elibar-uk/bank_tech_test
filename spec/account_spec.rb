@@ -5,7 +5,7 @@ describe Account do
   # let(:transaction_class) { double(:Transaction, new: transaction)}
   # subject(:account) { described_class.new(transaction: transaction_class)}
   subject(:account) { described_class.new}
-  let(:date_of) {'14/12/2012'}
+  let(:date_of) { '14/12/2012' }
   let(:amount_in) {1000}
   let(:amount_out) {500}
 
@@ -26,5 +26,14 @@ describe Account do
         expect(account.balance).to eq amount_in
       end
     end
+    # describe '#format' do
+    #   it "prints out the statement in given format" do
+    #
+    #   end
+    # end
+    # date || credit || debit || balance
+    #  17/12/2012 || || 1500 || -1500
+    #  10/12/2012 || || 1000 || -500
+    # 17/12/2012 || || 1500 || -2000
 
 end
