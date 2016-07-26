@@ -1,13 +1,11 @@
 require 'account'
 
 describe Account do
-  # let(:transaction) {double(:transaction, item_line: {date: 10/12/2012, amount: 1000})}
-  # let(:transaction_class) { double(:Transaction, new: transaction)}
-  # subject(:account) { described_class.new(transaction: transaction_class)}
   subject(:account) { described_class.new}
   let(:date_of) { '14/12/2012' }
   let(:amount_in) {1000}
   let(:amount_out) {500}
+  let(:statement_test) {'date || credit || debit || balance\n14/12/2012 || 1000 || || 1000\n14/12/2012 ||  500 || || 500'}
 
     describe '#initialize' do
       it 'intialises with the balance' do
@@ -26,14 +24,11 @@ describe Account do
         expect(account.balance).to eq amount_in
       end
     end
-    # describe '#format' do
-    #   it "prints out the statement in given format" do
-    #
-    #   end
-    # end
-    # date || credit || debit || balance
-    #  17/12/2012 || || 1500 || -1500
-    #  10/12/2012 || || 1000 || -500
-    # 17/12/2012 || || 1500 || -2000
-
+    describe '#statement' do
+      it "prints out the statement in given format" do
+        account.deposit(date_of, amount_in)
+        account.withdrawal(date_of, amount_out)
+        expect{ account.statement }.to output(statement_test).to_stdout_from_any_process
+      end
+   end
 end

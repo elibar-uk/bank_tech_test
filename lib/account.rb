@@ -1,7 +1,7 @@
 require_relative 'transaction'
 class Account
 
-attr_reader :balance, :transaction
+attr_reader :balance, :transaction, :transaction_history
 
   def initialize(transaction= Transaction.new)
     @transaction = transaction
@@ -25,13 +25,13 @@ attr_reader :balance, :transaction
 
   end
 
-  def format
+  def statement
     puts "date || credit || debit || balance"
     self.transaction_history.each do |item| if item[:balance]<0
     puts "#{item[:date]} || || #{item[:amount]} || #{item[:balance]}"
       else
     puts "#{item[:date]} || #{item[:amount]} || || #{item[:balance]}"
       end
+    end
   end
-end
 end
