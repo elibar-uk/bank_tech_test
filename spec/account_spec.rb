@@ -24,11 +24,14 @@ describe Account do
         expect(account.balance).to eq amount_in
       end
     end
-    describe '#statement' do
-      it "prints out the statement in given format" do
+   describe '#statement' do
+     it "prints the statement" do
+       expect do
+        account= Account.new
         account.deposit(date_of, amount_in)
         account.withdrawal(date_of, amount_out)
-        expect{ account.statement }.to output(statement_test).to_stdout_from_any_process
-      end
+        account.statement.to output(statement_test).to_stdout
+       end
+     end
    end
 end
